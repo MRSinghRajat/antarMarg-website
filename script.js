@@ -686,3 +686,28 @@ function getCheckedValues(name) {
   return Array.from(document.querySelectorAll(`input[name="${name}"]:checked`))
     .map(cb => cb.value);
 }
+
+/* ============================================
+   JAPA COUNTER INTERACTION
+   ============================================ */
+(function initJapaCounter() {
+  const japaCircle = document.querySelector('.japa-circle');
+  const japaCountText = document.querySelector('.japa-count');
+
+  if (japaCircle && japaCountText) {
+    let count = 108;
+    japaCircle.addEventListener('click', () => {
+      // Haptic feedback if supported by browser/device
+      if (navigator.vibrate) {
+        navigator.vibrate(50);
+      }
+      count++;
+      japaCountText.textContent = count;
+
+      // Quick flash animation
+      japaCircle.style.animation = 'none';
+      japaCircle.offsetHeight; /* trigger reflow */
+      japaCircle.style.animation = null;
+    });
+  }
+})();

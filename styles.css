@@ -227,8 +227,8 @@ h3 {
 }
 
 .nav-logo-img {
-  width: 40px;
-  height: 40px;
+  width: 84px;
+  height: 84px;
   object-fit: contain;
   border-radius: 6px;
 }
@@ -242,8 +242,8 @@ h3 {
 
 /* Hero logo */
 .hero-logo-img {
-  width: 280px;
-  height: 280px;
+  width: 440px;
+  height: 440px;
   object-fit: contain;
   margin: 0 auto 24px;
   display: block;
@@ -293,10 +293,7 @@ h3 {
 .hero-hindi {
   font-family: var(--font-sanskrit);
   font-size: 3.2rem;
-  background: linear-gradient(135deg, var(--gold), var(--saffron), var(--gold-light));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--gold);
   margin-left: 4px;
 }
 
@@ -1018,29 +1015,215 @@ h3 {
   line-height: 1.7;
 }
 
-.journey-stats {
+/* --- Timeline & Task Progress UI --- */
+.journey-card-header {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
 }
 
-.journey-stat {
-  text-align: center;
+.journey-points {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--gold-light);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  margin-top: 4px;
 }
 
-.journey-stat-value {
-  font-family: var(--font-heading);
-  font-size: 1.75rem;
+.points-icon {
+  font-size: 0.9rem;
+}
+
+.points-number {
   font-weight: 700;
   color: var(--gold);
-  display: block;
 }
 
-.journey-stat-label {
-  font-family: var(--font-label);
-  font-size: 0.6rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+.journey-timeline {
+  margin: 24px 0;
+  position: relative;
+  padding-left: 20px;
+}
+
+.journey-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 2px;
+  background: rgba(212, 175, 55, 0.2);
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 20px;
+  padding-left: 24px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -20px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid rgba(212, 175, 55, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  color: var(--gold);
+  z-index: 2;
+  transition: var(--transition);
+}
+
+.timeline-item.completed .timeline-dot {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg-primary);
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+.timeline-item.completed::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  bottom: -24px;
+  left: -14px;
+  width: 2px;
+  background: var(--gold);
+  z-index: 1;
+}
+
+.timeline-item.active .timeline-dot {
+  border-color: var(--gold-light);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+  animation: omPulse 2s infinite;
+}
+
+.timeline-content h4 {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.timeline-item.completed .timeline-content h4 {
   color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.timeline-content p {
+  font-size: 0.8rem !important;
+  color: var(--text-muted);
+  margin-bottom: 0 !important;
+}
+
+.journey-progress-container {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed rgba(212, 175, 55, 0.2);
+}
+
+.journey-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.journey-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--saffron));
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+  position: relative;
+  transition: width 1s ease-in-out;
+}
+
+.journey-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: translateXInfinite 2s infinite linear;
+}
+
+@keyframes translateXInfinite {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.journey-progress-text {
+  font-family: var(--font-label);
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  display: block;
+  text-align: right;
+}
+
+/* --- Interactive Japa UI --- */
+.japa-card-feature {
+  display: flex;
+  flex-direction: column;
+}
+
+.japa-ui-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 10px;
+}
+
+.japa-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 80%);
+  border: 2px solid var(--gold);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--gold-light);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+  animation: omPulse 3s infinite;
+  user-select: none;
+}
+
+.japa-circle:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 80%);
 }
 
 .journeys-coming {
