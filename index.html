@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Antar Marg — Your Spiritual Companion. Walk the sacred inner path with daily practice, ancient scriptures, AI-guided wisdom, and transformative spiritual journeys rooted in Sanatana Dharma.">
+  <title>Antar Marg — Your Spiritual Companion</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+
+<body>
+
+  <!-- Sacred Geometry Overlay -->
+  <div class="sacred-geometry"></div>
+
+  <!-- Floating Particles -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-content">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.png" alt="Antar Marg" class="nav-logo-img">
+        <span class="nav-logo-text">Antar<span class="nav-logo-hindi">मार्ग</span></span>
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features" onclick="closeNav()" data-i18n="nav.features">Features</a></li>
+        <li><a href="#journeys" onclick="closeNav()" data-i18n="nav.journeys">Journeys</a></li>
+        <li><a href="#ai-guru" onclick="closeNav()" data-i18n="nav.aiguru">AI Guru</a></li>
+        <li><a href="#pricing" onclick="closeNav()" data-i18n="nav.pricing">Pricing</a></li>
+        <li><a href="#community" onclick="closeNav()" data-i18n="nav.community">Community</a></li>
+      </ul>
+
+      <!-- Language Toggle -->
+      <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language">
+        <span class="lang-label" id="langLabel">हिंदी</span>
+      </button>
+
+      <div class="nav-cta">
+        <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="nav.joinWaitlist">Join Waitlist</a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-om-glow"></div>
+    <div class="hero-god-rays"></div>
+
+    <div class="hero-content">
+      <img src="assets/logo.png" alt="Antar Marg" class="hero-logo-img">
+      <p class="hero-tagline" data-i18n="hero.tagline">Your Spiritual Companion</p>
+      <h1 class="hero-title"><span class="gradient-text">Antar</span><span class="hero-hindi">मार्ग</span></h1>
+      <p class="hero-description" data-i18n="hero.description">
+        Walk the sacred inner path — where ancient wisdom meets modern devotion.
+        A living spiritual ecosystem for daily sadhana, scripture study, guided journeys & inner transformation.
+      </p>
+      <p class="hero-sanskrit">॥ धर्मो रक्षति रक्षितः ॥</p>
+
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="hero.joinBtn">🙏 Join the
+          Waitlist</a>
+        <a href="#features" class="btn btn-outline" data-i18n="hero.exploreBtn">✦ Explore Features</a>
+      </div>
+    </div>
+
+    <!-- Sacred Verse Marquee (behind hero content) -->
+    <div class="verse-marquee hero-marquee">
+      <!-- Row 1: scrolls left -->
+      <div class="marquee-track marquee-left">
+        <div class="marquee-content">
+          <span class="marquee-verse"><span class="verse-sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.2 · V.47</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">योगः कर्मसु कौशलम्</span><span class="verse-ref">—
+              Bhagavad Gita · Ch.2 · V.50</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">श्रद्धावान् लभते ज्ञानम्</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.4 · V.39</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">रामो विग्रहवान् धर्मः</span><span class="verse-ref">—
+              Valmiki Ramayana · Aranya Kanda</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">बुद्धिर्बलं यशो धैर्यं निर्भयत्वम्</span><span
+              class="verse-ref">— Hanuman Chalisa · Doha</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.18 · V.66</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">अहं बीजप्रदः पिता</span><span class="verse-ref">—
+              Bhagavad Gita · Ch.14 · V.4</span></span>
+          <span class="marquee-divider">✦</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span class="marquee-verse"><span class="verse-sanskrit">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.2 · V.47</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">योगः कर्मसु कौशलम्</span><span class="verse-ref">—
+              Bhagavad Gita · Ch.2 · V.50</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">श्रद्धावान् लभते ज्ञानम्</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.4 · V.39</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">रामो विग्रहवान् धर्मः</span><span class="verse-ref">—
+              Valmiki Ramayana · Aranya Kanda</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">बुद्धिर्बलं यशो धैर्यं निर्भयत्वम्</span><span
+              class="verse-ref">— Hanuman Chalisa · Doha</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.18 · V.66</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">अहं बीजप्रदः पिता</span><span class="verse-ref">—
+              Bhagavad Gita · Ch.14 · V.4</span></span>
+          <span class="marquee-divider">✦</span>
+        </div>
+      </div>
+      <!-- Row 2: scrolls right -->
+      <div class="marquee-track marquee-right">
+        <div class="marquee-content">
+          <span class="marquee-verse"><span class="verse-sanskrit">असतो मा सद्गमय · तमसो मा ज्योतिर्गमय</span><span
+              class="verse-ref">— Brihadaranyaka Upanishad · 1.3.28</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">वसुधैव कुटुम्बकम्</span><span class="verse-ref">—
+              Maha Upanishad · Ch.6 · V.72</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">यदा यदा हि धर्मस्य ग्लानिर्भवति भारत</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.4 · V.7</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">मनः एव मनुष्याणां कारणं बन्धमोक्षयोः</span><span
+              class="verse-ref">— Amritabindu Upanishad · V.2</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">जननी जन्मभूमिश्च स्वर्गादपि गरीयसी</span><span
+              class="verse-ref">— Valmiki Ramayana · Yuddha Kanda</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">ॐ पूर्णमदः पूर्णमिदम्</span><span class="verse-ref">—
+              Isha Upanishad · Shanti Mantra</span></span>
+          <span class="marquee-divider">✦</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span class="marquee-verse"><span class="verse-sanskrit">असतो मा सद्गमय · तमसो मा ज्योतिर्गमय</span><span
+              class="verse-ref">— Brihadaranyaka Upanishad · 1.3.28</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">वसुधैव कुटुम्बकम्</span><span class="verse-ref">—
+              Maha Upanishad · Ch.6 · V.72</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">यदा यदा हि धर्मस्य ग्लानिर्भवति भारत</span><span
+              class="verse-ref">— Bhagavad Gita · Ch.4 · V.7</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">मनः एव मनुष्याणां कारणं बन्धमोक्षयोः</span><span
+              class="verse-ref">— Amritabindu Upanishad · V.2</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">जननी जन्मभूमिश्च स्वर्गादपि गरीयसी</span><span
+              class="verse-ref">— Valmiki Ramayana · Yuddha Kanda</span></span>
+          <span class="marquee-divider">✦</span>
+          <span class="marquee-verse"><span class="verse-sanskrit">ॐ पूर्णमदः पूर्णमिदम्</span><span class="verse-ref">—
+              Isha Upanishad · Shanti Mantra</span></span>
+          <span class="marquee-divider">✦</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== APP PREVIEW / PHONE MOCKUP ==================== -->
+  <section class="app-preview" id="app-preview">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="preview.label">App Preview</span>
+        <h2 class="section-title reveal" data-i18n="preview.title">Experience <span
+            class="gradient-text">Antarमार्ग</span></h2>
+        <p class="section-subtitle reveal" data-i18n="preview.subtitle">A glimpse into the spiritual ecosystem that
+          awaits you.</p>
+      </div>
+
+      <div class="phone-showcase reveal">
+        <div class="carousel-container">
+          <div class="carousel-track">
+            <!-- First Set -->
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-1.png" alt="Screen 1" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-2.png" alt="Screen 2" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-3.png" alt="Screen 3" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-4.png" alt="Screen 4" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-5.png" alt="Screen 5" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-6.png" alt="Screen 6" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-7.png" alt="Screen 7" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-8.png" alt="Screen 8" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-9.png" alt="Screen 9" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-10.png" alt="Screen 10" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-11.png" alt="Screen 11" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-12.png" alt="Screen 12" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-13.png" alt="Screen 13" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <!-- Second Set for continuous loop -->
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-1.png" alt="Screen 1" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-2.png" alt="Screen 2" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-3.png" alt="Screen 3" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-4.png" alt="Screen 4" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-5.png" alt="Screen 5" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-6.png" alt="Screen 6" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-7.png" alt="Screen 7" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-8.png" alt="Screen 8" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-9.png" alt="Screen 9" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-10.png" alt="Screen 10" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-11.png" alt="Screen 11" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-12.png" alt="Screen 12" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+            <div class="carousel-phone">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen"><img src="assets/screens/screen-13.png" alt="Screen 13" class="carousel-img">
+                </div>
+                <div class="phone-home-bar"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== STATS BAR ==================== -->
+  <section class="stats-bar" id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" data-target="50000" data-suffix="+" data-format="k">0</span>
+          <span class="stat-label">Active Users</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="4.8" data-suffix="★" data-decimal="true">0</span>
+          <span class="stat-label">App Rating</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="1000000" data-suffix="+" data-format="m">0</span>
+          <span class="stat-label">Verses Read</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-target="365" data-suffix=" Day Streak">0</span>
+          <span class="stat-label">Max Possible</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES ==================== -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="features.label">Sacred Features</span>
+        <h2 class="section-title reveal" data-i18n="features.title">Everything for Your <span
+            class="gradient-text">Spiritual Growth</span></h2>
+        <p class="section-subtitle reveal" data-i18n="features.subtitle">From ancient scriptures to AI-powered guidance
+          — a complete ecosystem for
+          your daily spiritual practice.</p>
+      </div>
+
+      <div class="features-grid stagger-children">
+
+        <!-- Sacred Texts -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">📖</span>
+          <h3>Sacred Texts Library</h3>
+          <p>Complete Bhagavad Gita (18 chapters, 700 verses), Ramayana, Hanuman Chalisa, Vishnu Sahasranama & more.
+            Every verse with Sanskrit, transliteration & deep meanings.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">1567 Verses</span>
+            <span class="feature-tag">Sanskrit</span>
+            <span class="feature-tag">Meanings</span>
+          </div>
+        </div>
+
+        <!-- Daily Practice -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🙏</span>
+          <h3>Daily Practice Hub</h3>
+          <p>Daily verse from Gita/Ramayana, morning prayers & evening aartis, mantra counter with audio, and streak
+            tracking — your personal Darshan system.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">365-Day Streak</span>
+            <span class="feature-tag">Mantras</span>
+            <span class="feature-tag">Habits</span>
+          </div>
+        </div>
+
+        <!-- Stories & Wisdom -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🧠</span>
+          <h3>Stories & Wisdom</h3>
+          <p>61 sacred stories across 8 deities in Hindi & English. Multi-page immersive format with daily story feature
+            covering Ganesha, Shiva, Krishna, Durga & more.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">61 Stories</span>
+            <span class="feature-tag">8 Deities</span>
+            <span class="feature-tag">Bilingual</span>
+          </div>
+        </div>
+
+        <!-- AI Guru -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🔮</span>
+          <h3>AI Spiritual Guru</h3>
+          <p>Ask anything spiritual — get instant guidance. Numerology, Kundli analysis, palmistry, mantra guidance,
+            Panchang, dream interpretation & gemstone recommendations.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">AI Powered</span>
+            <span class="feature-tag">Kundli</span>
+            <span class="feature-tag">Numerology</span>
+          </div>
+        </div>
+
+        <!-- Audio Library -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🎵</span>
+          <h3>Sacred Audio Library</h3>
+          <p>Aartis, mantras, beej mantras, deity collections, meditation ambient (Om series up to 108 min), bhajans,
+            festival specials & Gita chapter recitations.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Mantras</span>
+            <span class="feature-tag">Bhajans</span>
+            <span class="feature-tag">Meditation</span>
+          </div>
+        </div>
+
+        <!-- Spiritual Journeys -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🌱</span>
+          <h3>Spiritual Journeys</h3>
+          <p>15 guided spiritual journeys — from Garbh Sanskar to 108-Day Lakshmi Sadhana. Phase-based progression with
+            tasks, milestones & community support.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">15 Journeys</span>
+            <span class="feature-tag">Milestones</span>
+            <span class="feature-tag">Phases</span>
+          </div>
+        </div>
+
+        <!-- Ashram -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🏡</span>
+          <h3>Your Inner Ashram</h3>
+          <p>A Tamagotchi-style spiritual space that grows with your practice. Unlock decorative items via streaks and
+            milestones. Your calm, personal sanctuary.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Gamified</span>
+            <span class="feature-tag">Unlock Items</span>
+            <span class="feature-tag">Progress</span>
+          </div>
+        </div>
+
+        <!-- Additional -->
+        <div class="feature-card reveal">
+          <span class="feature-icon">🪔</span>
+          <h3>And Much More</h3>
+          <p>Gratitude journal, meditation guides, festival-specific tasks, 32 achievements, bookmarks & notes on
+            verses, and full reading progress tracking.</p>
+          <div class="feature-tags">
+            <span class="feature-tag">Journal</span>
+            <span class="feature-tag">Achievements</span>
+            <span class="feature-tag">Meditation</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== JOURNEYS ==================== -->
+  <section class="journeys" id="journeys">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="journeys.label">Guided Paths</span>
+        <h2 class="section-title reveal" data-i18n="journeys.title">Spiritual <span
+            class="gradient-text">Journeys</span></h2>
+        <p class="section-subtitle reveal" data-i18n="journeys.subtitle">Structured, phased journeys for every stage of
+          life — from new parents to
+          seekers on the path of devotion.</p>
+      </div>
+
+      <div class="journeys-live">
+        <!-- Garbh Sanskar -->
+        <div class="journey-card-featured reveal">
+          <span class="journey-badge live">● Live Now</span>
+          <h3>🤰 Garbh Sanskar</h3>
+          <p>A sacred journey for expectant mothers — 9 phases aligned with each month of pregnancy, guiding you through
+            mantras, diet, meditation & spiritual bonding with your child.</p>
+          <div class="journey-stats">
+            <div class="journey-stat">
+              <span class="journey-stat-value">9</span>
+              <span class="journey-stat-label">Phases</span>
+            </div>
+            <div class="journey-stat">
+              <span class="journey-stat-value">37</span>
+              <span class="journey-stat-label">Tasks</span>
+            </div>
+            <div class="journey-stat">
+              <span class="journey-stat-value">16</span>
+              <span class="journey-stat-label">Milestones</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Little Sadhu -->
+        <div class="journey-card-featured reveal">
+          <span class="journey-badge live">● Live Now</span>
+          <h3>🧒 Little Sadhu</h3>
+          <p>Introduce your child to Sanatana Dharma through playful, age-appropriate spiritual activities — stories,
+            mantras, temple visits, and values lessons.</p>
+          <div class="journey-stats">
+            <div class="journey-stat">
+              <span class="journey-stat-value">5</span>
+              <span class="journey-stat-label">Phases</span>
+            </div>
+            <div class="journey-stat">
+              <span class="journey-stat-value">25</span>
+              <span class="journey-stat-label">Tasks</span>
+            </div>
+            <div class="journey-stat">
+              <span class="journey-stat-value">11</span>
+              <span class="journey-stat-label">Milestones</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coming Soon -->
+      <div class="journeys-coming reveal">
+        <h3>🔜 Coming Soon</h3>
+        <div class="coming-soon-grid stagger-children">
+          <div class="coming-soon-item reveal"><span class="cs-icon">📖</span> 21-Day Gita Challenge</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🙏</span> 40-Day Hanuman Sadhana</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🪷</span> 108-Day Lakshmi Sadhana</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">☀️</span> 41-Day Gayatri Sadhana</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🔱</span> Navratri Journey</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🔵</span> Shravan Maas</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🪔</span> Kartik Maas</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">💍</span> Vivah Yatra</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">👶</span> New Parent Path</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">💚</span> Healing Path</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🕊️</span> Grief Journey</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🌿</span> Vanaprastha</div>
+          <div class="coming-soon-item reveal"><span class="cs-icon">🙏</span> Pitru Paksha</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AI GURU ==================== -->
+  <section class="ai-guru" id="ai-guru">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="aiguru.label">AI Powered</span>
+        <h2 class="section-title reveal" data-i18n="aiguru.title">Your Personal <span class="gradient-text">Spiritual
+            Guru</span></h2>
+        <p class="section-subtitle reveal" data-i18n="aiguru.subtitle">Ask anything spiritual and receive instant,
+          thoughtful guidance rooted in
+          ancient wisdom.</p>
+      </div>
+
+      <div class="guru-layout">
+        <div class="guru-features-list stagger-children">
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">❓</span>
+            <div>
+              <h4>Spiritual Q&A</h4>
+              <p>Ask any question about dharma, karma, scriptures & practices</p>
+            </div>
+          </div>
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">🔢</span>
+            <div>
+              <h4>Numerology Readings</h4>
+              <p>Discover the spiritual significance of your birth numbers</p>
+            </div>
+          </div>
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">⭐</span>
+            <div>
+              <h4>Kundli Analysis</h4>
+              <p>AI-powered birth chart analysis & kundli matching</p>
+            </div>
+          </div>
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">🤚</span>
+            <div>
+              <h4>Palmistry</h4>
+              <p>Upload your palm photo for AI-based reading & insights</p>
+            </div>
+          </div>
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">📿</span>
+            <div>
+              <h4>Mantra & Panchang</h4>
+              <p>Daily Panchang, muhurat guidance & personalized mantras</p>
+            </div>
+          </div>
+          <div class="guru-feature reveal">
+            <span class="guru-feature-icon">💎</span>
+            <div>
+              <h4>Gemstones & Dreams</h4>
+              <p>Gemstone recommendations & spiritual dream interpretation</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chat mockup -->
+        <div class="guru-chat-mockup reveal">
+          <div class="chat-header">
+            <div class="chat-avatar">🙏</div>
+            <div class="chat-header-info">
+              <h4>Antar Marg Guru</h4>
+              <p>● Online</p>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="chat-msg user">What is the meaning of dharma in Bhagavad Gita?</div>
+            <div class="chat-msg guru">🙏 Namaste! In the Bhagavad Gita, <strong>dharma</strong> (धर्म) refers to one's
+              sacred duty, righteousness, and the moral law that sustains cosmic order. Krishna teaches Arjuna that
+              fulfilling one's <em>svadharma</em> — personal duty — is the highest path, even if imperfectly done.
+              "श्रेयान्स्वधर्मो विगुणः" — Better is one's own dharma, though imperfect. (Ch. 3, Verse 35)</div>
+            <div class="chat-msg user">Which mantra should I chant for peace of mind?</div>
+            <div class="chat-msg guru">For inner peace, I recommend the <strong>Shanti Mantra</strong>:<br><br><em>ॐ
+                सर्वेशां स्वस्तिर्भवतु</em><br><br>Chant it 108 times daily during Brahma Muhurta (4:30-6:00 AM) for
+              best results. 🙏</div>
+          </div>
+          <div class="chat-input">
+            <input type="text" placeholder="Ask your spiritual question..." readonly>
+            <button>➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== AUDIO ==================== -->
+  <section class="audio-section" id="audio">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="audio.label">Divine Sounds</span>
+        <h2 class="section-title reveal" data-i18n="audio.title">Sacred <span class="gradient-text">Audio Library</span>
+        </h2>
+        <p class="section-subtitle reveal" data-i18n="audio.subtitle">Immerse yourself in mantras, bhajans, aartis, and
+          meditation sounds curated
+          for your spiritual practice.</p>
+      </div>
+
+      <div class="audio-grid stagger-children">
+        <div class="audio-card reveal">
+          <span class="audio-icon">🌅</span>
+          <h4>Daily Practice</h4>
+          <p>Morning aartis, Gayatri mantra, evening prayers</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">📿</span>
+          <h4>Mantras</h4>
+          <p>Beej mantras, Navagraha, deity-specific chants</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">🙏</span>
+          <h4>Deity Collections</h4>
+          <p>6-8 tracks per deity — Shiva, Krishna, Durga & more</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">🧘</span>
+          <h4>Meditation & Ambient</h4>
+          <p>Om series: 5, 11, 21 & 108 minute sessions</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">🪔</span>
+          <h4>Festival Specials</h4>
+          <p>Navratri, Diwali, Janmashtami collections</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">🎶</span>
+          <h4>Bhajans</h4>
+          <p>Classic devotional songs for all deities</p>
+        </div>
+        <div class="audio-card reveal">
+          <span class="audio-icon">📖</span>
+          <h4>Text Recitations</h4>
+          <p>Gita chapters, Sunderkand, stotrams</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRICING ==================== -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal" data-i18n="pricing.label">Choose Your Path</span>
+        <h2 class="section-title reveal" data-i18n="pricing.title">Simple, <span class="gradient-text">Transparent
+            Pricing</span></h2>
+        <p class="section-subtitle reveal" data-i18n="pricing.subtitle">Start free and upgrade when you're ready for
+          deeper spiritual immersion.</p>
+      </div>
+
+      <div class="pricing-grid">
+
+        <!-- Free -->
+        <div class="pricing-card reveal">
+          <span class="pricing-tier">Free</span>
+          <div class="pricing-price">₹0</div>
+          <div class="pricing-period">Free forever</div>
+          <ul class="pricing-features">
+            <li>Daily verse + streak tracking</li>
+            <li>Complete Bhagavad Gita access</li>
+            <li>AI Guru — 5 questions/day</li>
+            <li>Basic sacred stories</li>
+            <li>Basic numerology readings</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Get Started Free</a>
+        </div>
+
+        <!-- Plus -->
+        <div class="pricing-card popular reveal">
+          <div class="pricing-popular-badge">Most Popular</div>
+          <span class="pricing-tier">Plus</span>
+          <div class="pricing-price">₹199 <span>/ month</span></div>
+          <div class="pricing-period">Best value for seekers</div>
+          <ul class="pricing-features">
+            <li>Everything in Free, plus:</li>
+            <li>Unlimited AI Guru access</li>
+            <li>Full Garbh Sanskar journey</li>
+            <li>Little Sadhu program</li>
+            <li>All sadhana journeys (21/40 day)</li>
+            <li>Full bhajan library</li>
+            <li>10 offline audio downloads</li>
+            <li>Kundli matching (3/month)</li>
+            <li>Monthly spiritual report</li>
+          </ul>
+          <a href="#" class="btn btn-primary">Start Plus Journey</a>
+        </div>
+
+        <!-- Guru -->
+        <div class="pricing-card reveal">
+          <span class="pricing-tier">Guru</span>
+          <div class="pricing-price">₹499 <span>/ month</span></div>
+          <div class="pricing-period">Complete spiritual mastery</div>
+          <ul class="pricing-features">
+            <li>Everything in Plus, plus:</li>
+            <li>108-Day Lakshmi Sadhana</li>
+            <li>Unlimited offline downloads</li>
+            <li>Pandit video call (1/month)</li>
+            <li>Family plan (5 kundlis)</li>
+            <li>Priority AI responses</li>
+          </ul>
+          <a href="#" class="btn btn-outline">Become a Guru</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== COMMUNITY / SOCIAL PROOF ==================== -->
+  <section class="community" id="community">
+    <div class="container">
+      <div class="text-center">
+        <span class="section-label reveal">Join Our Sangha</span>
+        <h2 class="section-title reveal">Walk the Path <span class="gradient-text">Together</span></h2>
+        <p class="section-subtitle reveal">Be part of a sacred community of seekers walking the inner path of dharma.
+        </p>
+      </div>
+
+      <div class="community-grid stagger-children">
+        <div class="community-card reveal">
+          <a href="https://www.youtube.com/@OfficialAntarMarg" target="_blank" rel="noopener"
+            style="text-decoration: none; color: inherit;">
+            <span class="community-icon">📺</span>
+            <span class="community-stat">YouTube</span>
+            <span class="community-label">Watch & Learn</span>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">Slokas, stories & spiritual
+              teachings</p>
+          </a>
+        </div>
+        <div class="community-card reveal">
+          <a href="https://www.instagram.com/official.antarmarg/" target="_blank" rel="noopener"
+            style="text-decoration: none; color: inherit;">
+            <span class="community-icon">📸</span>
+            <span class="community-stat">Instagram</span>
+            <span class="community-label">Daily Inspiration</span>
+            <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">Sacred verses, wisdom & community
+            </p>
+          </a>
+        </div>
+        <div class="community-card reveal">
+          <span class="community-icon">🙏</span>
+          <span class="community-stat">Open to All</span>
+          <span class="community-label">For Every Seeker</span>
+          <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">From beginners to devoted
+            practitioners</p>
+        </div>
+        <div class="community-card reveal">
+          <span class="community-icon">🕉️</span>
+          <span class="community-stat">Rooted in Dharma</span>
+          <span class="community-label">Authentic Tradition</span>
+          <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 8px;">Guided by Sanatana Dharma principles
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="reveal" data-i18n="cta.title"><span class="gradient-text">Begin Your Spiritual Journey</span></h2>
+      <p class="reveal" data-i18n="cta.subtitle">Join the Antar Marg waitlist today and be among the first to walk the
+        sacred inner path toward
+        peace, wisdom, and devotion.</p>
+      <div class="hero-buttons reveal">
+        <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="cta.btn">🙏 Join Waitlist — It's
+          Free</a>
+        <a href="#features" class="btn btn-outline" data-i18n="cta.learn">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <img src="assets/logo.png" alt="Antar Marg" class="nav-logo-img">
+            <span class="nav-logo-text">Antar<span class="nav-logo-hindi">मार्ग</span></span>
+          </a>
+          <p data-i18n="footer.desc">Walk the sacred inner path — a living spiritual ecosystem for daily sadhana,
+            devotion, scripture & inner
+            transformation. Rooted in Sanatana Dharma.</p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.features">Features</h4>
+          <ul class="footer-links">
+            <li><a href="#features">Sacred Texts</a></li>
+            <li><a href="#features">Daily Practice</a></li>
+            <li><a href="#ai-guru">AI Guru</a></li>
+            <li><a href="#audio">Audio Library</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.journeys">Journeys</h4>
+          <ul class="footer-links">
+            <li><a href="#journeys">Garbh Sanskar</a></li>
+            <li><a href="#journeys">Little Sadhu</a></li>
+            <li><a href="#journeys">Gita Challenge</a></li>
+            <li><a href="#journeys">Hanuman Sadhana</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading" data-i18n="footer.company">Company</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-i18n="footer.about">About Us</a></li>
+            <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+            <li><a href="#" data-i18n="footer.terms">Terms of Service</a></li>
+            <li><a href="#" data-i18n="footer.contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer.copy">© 2026 Antar Marg. All rights reserved. Made with 🙏 for Sanatana Dharma.</p>
+        <div class="footer-social">
+          <a href="https://www.youtube.com/@OfficialAntarMarg" target="_blank" rel="noopener"
+            aria-label="YouTube">📺</a>
+          <a href="https://www.instagram.com/official.antarmarg/" target="_blank" rel="noopener"
+            aria-label="Instagrams">📸</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== IMAGE MODAL ==================== -->
+  <div class="image-modal" id="imageModal" onclick="closeImageModal(event)">
+    <button class="image-modal-close" onclick="closeImageModal(event)">&times;</button>
+    <img src="" alt="Zoomed Screenshot" class="image-modal-content" id="imageModalImg">
+  </div>
+
+  <!-- ==================== WAITLIST MODAL ==================== -->
+  <div class="waitlist-overlay" id="waitlistOverlay">
+    <div class="waitlist-modal">
+      <button class="waitlist-close" onclick="closeWaitlist()" aria-label="Close">✕</button>
+
+      <!-- Step Indicator -->
+      <div class="waitlist-steps">
+        <div class="waitlist-step active" data-step="1"><span>1</span> Your Info</div>
+        <div class="waitlist-step" data-step="2"><span>2</span> Using For</div>
+        <div class="waitlist-step" data-step="3"><span>3</span> Interests</div>
+      </div>
+
+      <form id="waitlistForm" onsubmit="return false;">
+
+        <!-- STEP 1: Personal Info -->
+        <div class="waitlist-panel active" id="waitlistStep1">
+          <div class="waitlist-header">
+            <h3>🙏 Join the Antar Marg Waitlist</h3>
+            <p>Be among the first to experience the complete spiritual ecosystem.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="wl-name">Full Name *</label>
+            <input type="text" id="wl-name" name="full_name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="wl-email">Email Address *</label>
+            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="wl-city">City</label>
+              <input type="text" id="wl-city" name="city" placeholder="e.g. Mumbai">
+            </div>
+            <div class="form-group">
+              <label for="wl-state">State</label>
+              <input type="text" id="wl-state" name="state" placeholder="e.g. Maharashtra">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="wl-country">Country</label>
+            <input type="text" id="wl-country" name="country" placeholder="India" value="India">
+          </div>
+
+          <button type="button" class="btn btn-primary waitlist-next" onclick="goToStep(2)">Continue →</button>
+        </div>
+
+        <!-- STEP 2: Who is this for? -->
+        <div class="waitlist-panel" id="waitlistStep2">
+          <div class="waitlist-header">
+            <h3>Who will use Antar Marg?</h3>
+            <p>Select all that apply — this helps us personalize your experience.</p>
+          </div>
+
+          <div class="checkbox-grid">
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="self">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🧘</span>
+                <span class="checkbox-label">Myself</span>
+                <span class="checkbox-desc">Personal spiritual growth</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="spouse">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">💑</span>
+                <span class="checkbox-label">Spouse / Partner</span>
+                <span class="checkbox-desc">Shared spiritual journey</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="expecting_mother">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🤰</span>
+                <span class="checkbox-label">Expecting Mother</span>
+                <span class="checkbox-desc">Garbh Sanskar journey</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="children">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">👶</span>
+                <span class="checkbox-label">Children</span>
+                <span class="checkbox-desc">Little Sadhu program</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="parents_elders">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🙏</span>
+                <span class="checkbox-label">Parents / Elders</span>
+                <span class="checkbox-desc">Vanaprastha & daily practice</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="student">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">📚</span>
+                <span class="checkbox-label">Student</span>
+                <span class="checkbox-desc">Learning scriptures & wisdom</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="usage_for" value="family">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">👨‍👩‍👧‍👦</span>
+                <span class="checkbox-label">Whole Family</span>
+                <span class="checkbox-desc">Family spiritual practices</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="waitlist-nav-buttons">
+            <button type="button" class="btn btn-outline" onclick="goToStep(1)">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Feature Interests -->
+        <div class="waitlist-panel" id="waitlistStep3">
+          <div class="waitlist-header">
+            <h3>What excites you most?</h3>
+            <p>Select the features you're most interested in.</p>
+          </div>
+
+          <div class="checkbox-grid">
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="sacred_texts">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">📖</span>
+                <span class="checkbox-label">Sacred Texts</span>
+                <span class="checkbox-desc">Gita, Ramayana, Chalisa</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="daily_practice">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🪔</span>
+                <span class="checkbox-label">Daily Practice</span>
+                <span class="checkbox-desc">Streaks, mantras, aartis</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="ai_guru">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🔮</span>
+                <span class="checkbox-label">AI Guru</span>
+                <span class="checkbox-desc">Spiritual Q&A, guidance</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="journeys">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🌱</span>
+                <span class="checkbox-label">Spiritual Journeys</span>
+                <span class="checkbox-desc">Sadhanas & milestones</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="stories">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🧠</span>
+                <span class="checkbox-label">Stories & Wisdom</span>
+                <span class="checkbox-desc">61 deity stories</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="audio">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🎵</span>
+                <span class="checkbox-label">Audio Library</span>
+                <span class="checkbox-desc">Bhajans, mantras, meditation</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="kundli">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">⭐</span>
+                <span class="checkbox-label">Kundli & Numerology</span>
+                <span class="checkbox-desc">Birth charts & readings</span>
+              </div>
+            </label>
+
+            <label class="checkbox-card">
+              <input type="checkbox" name="interests" value="meditation">
+              <div class="checkbox-content">
+                <span class="checkbox-icon">🧘</span>
+                <span class="checkbox-label">Meditation</span>
+                <span class="checkbox-desc">Guided sessions & ambient</span>
+              </div>
+            </label>
+          </div>
+
+          <div class="form-group" style="margin-top: 16px;">
+            <label for="wl-referral">How did you hear about us?</label>
+            <select id="wl-referral" name="referral_source">
+              <option value="">Select one (optional)</option>
+              <option value="youtube">YouTube</option>
+              <option value="instagram">Instagram</option>
+              <option value="friend">Friend / Family</option>
+              <option value="search">Google Search</option>
+              <option value="social_media">Other Social Media</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="waitlist-nav-buttons">
+            <button type="button" class="btn btn-outline" onclick="goToStep(2)">← Back</button>
+            <button type="button" class="btn btn-primary waitlist-submit" id="waitlistSubmitBtn"
+              onclick="submitWaitlist()">🙏 Join Waitlist</button>
+          </div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="waitlist-panel" id="waitlistSuccess" style="text-align: center; padding: 48px 24px;">
+          <div style="font-size: 4rem; margin-bottom: 16px;">🙏</div>
+          <h3 style="margin-bottom: 12px;">Namaste! You're on the list!</h3>
+          <p style="color: var(--text-muted); margin-bottom: 8px;">We'll notify you as soon as Antar Marg is ready.</p>
+          <p style="color: var(--gold); font-family: var(--font-sanskrit); font-size: 1.1rem; margin-bottom: 24px;">॥
+            शुभमस्तु ॥</p>
+          <button type="button" class="btn btn-outline" onclick="closeWaitlist()">Close</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
