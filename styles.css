@@ -261,6 +261,12 @@ h3 {
   font-weight: 400;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 /* Language toggle */
 .lang-toggle {
   background: rgba(212, 175, 55, 0.1);
@@ -279,6 +285,46 @@ h3 {
 .lang-toggle:hover {
   background: rgba(212, 175, 55, 0.2);
   border-color: var(--gold);
+}
+
+/* Music Toggle */
+.music-toggle {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-gold);
+  color: var(--gold);
+  padding: 6px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.music-toggle:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: var(--gold);
+  transform: scale(1.05);
+}
+
+.music-toggle.playing .music-icon {
+  animation: pulse-music 2s infinite;
+}
+
+@keyframes pulse-music {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 /* Hero title with Antar + मार्ग attached */

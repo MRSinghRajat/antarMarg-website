@@ -2,6 +2,9 @@
    GRANNTHALYA — Script
    ============================================ */
 
+// --- Vercel Analytics ---
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+
 // --- Floating Gold Particles ---
 (function initParticles() {
   const canvas = document.getElementById('particles-canvas');
@@ -319,6 +322,9 @@ const translations = {
     'wl.city': 'City',
     'wl.state': 'State',
     'wl.country': 'Country',
+    'wl.deviceTitle': 'What device do you use?',
+    'wl.deviceAndroid': 'Android',
+    'wl.deviceIos': 'iPhone (iOS)',
     'wl.continue': 'Continue →',
     'wl.back': '← Back',
     'wl.title2': 'Who will use Antar Marg?',
@@ -443,6 +449,9 @@ const translations = {
     'wl.city': 'शहर',
     'wl.state': 'राज्य',
     'wl.country': 'देश',
+    'wl.deviceTitle': 'आप कौन सा डिवाइस इस्तेमाल करते हैं?',
+    'wl.deviceAndroid': 'एंड्रॉयड (Android)',
+    'wl.deviceIos': 'आईफोन (iPhone)',
     'wl.continue': 'आगे →',
     'wl.back': '← पीछे',
     'wl.title2': 'अंतर मार्ग कौन उपयोग करेगा?',
@@ -593,6 +602,7 @@ function validateStep(step) {
   if (step === 1) {
     const name = document.getElementById('wl-name').value.trim();
     const email = document.getElementById('wl-email').value.trim();
+    const deviceType = document.querySelector('input[name="device_type"]:checked');
 
     if (!name) {
       shakeField('wl-name');
@@ -602,6 +612,11 @@ function validateStep(step) {
     if (!email || !email.includes('@') || !email.includes('.')) {
       shakeField('wl-email');
       document.getElementById('wl-email').focus();
+      return false;
+    }
+    if (!deviceType) {
+      shakeField('deviceGroup');
+      // Adding a temporary warning message if needed, or just let it shake
       return false;
     }
     return true;
@@ -645,6 +660,7 @@ async function submitWaitlist() {
     city: document.getElementById('wl-city').value.trim() || null,
     state: document.getElementById('wl-state').value.trim() || null,
     country: document.getElementById('wl-country').value.trim() || 'India',
+    device_type: getCheckedValues('device_type')[0] || null,
     usage_for: getCheckedValues('usage_for'),
     interests: getCheckedValues('interests'),
     referral_source: document.getElementById('wl-referral').value || null,
@@ -709,5 +725,60 @@ function getCheckedValues(name) {
       japaCircle.offsetHeight; /* trigger reflow */
       japaCircle.style.animation = null;
     });
+  }
+})();
+
+/* ============================================
+   AMBIENT BACKGROUND MUSIC
+   ============================================ */
+(function initAmbientMusic() {
+  const bgMusic = document.getElementById('bgMusic');
+  const musicToggle = document.getElementById('musicToggle');
+  const musicIcon = document.getElementById('musicIcon');
+  let hasInteracted = false;
+  let isPlaying = false;
+
+  if (!bgMusic || !musicToggle) return;
+
+  // Try to play on first user interaction anywhere on the page
+  const startMusicOnInteract = () => {
+    if (hasInteracted) return;
+    hasInteracted = true;
+    toggleSound(true);
+    // Remove listeners once interacting
+    document.removeEventListener('click', startMusicOnInteract);
+    document.removeEventListener('touchstart', startMusicOnInteract);
+    document.removeEventListener('scroll', startMusicOnInteract);
+  };
+
+  document.addEventListener('click', startMusicOnInteract);
+  document.addEventListener('touchstart', startMusicOnInteract);
+  document.addEventListener('scroll', startMusicOnInteract, { once: true });
+
+  // Manual toggle
+  musicToggle.addEventListener('click', (e) => {
+    e.stopPropagation(); // don't trigger global click if not played yet
+    hasInteracted = true;
+    toggleSound(!isPlaying);
+  });
+
+  function toggleSound(play) {
+    if (play) {
+      bgMusic.volume = 0.3; // Gentle volume
+      bgMusic.play().then(() => {
+        isPlaying = true;
+        musicIcon.textContent = '🔊';
+        musicToggle.classList.add('playing');
+        musicToggle.setAttribute('aria-label', 'Pause Background Music');
+      }).catch(err => {
+        console.warn('Autoplay prevented by browser:', err);
+      });
+    } else {
+      bgMusic.pause();
+      isPlaying = false;
+      musicIcon.textContent = '🔇';
+      musicToggle.classList.remove('playing');
+      musicToggle.setAttribute('aria-label', 'Play Background Music');
+    }
   }
 })();

@@ -12,6 +12,8 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/logo.png">
+  <!-- Vercel Analytics -->
+  <script defer src="/_vercel/insights/script.js"></script>
 </head>
 
 <body>
@@ -38,18 +40,34 @@
         <li><a href="#community" onclick="closeNav()" data-i18n="nav.community">Community</a></li>
       </ul>
 
-      <!-- Language Toggle -->
-      <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language">
-        <span class="lang-label" id="langLabel">हिंदी</span>
-      </button>
+      <div class="nav-actions">
+        <!-- Language Toggle -->
+        <button class="lang-toggle" id="langToggle" onclick="toggleLanguage()" aria-label="Switch language">
+          <span class="lang-label" id="langLabel">हिंदी</span>
+        </button>
 
-      <div class="nav-cta">
-        <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="nav.joinWaitlist">Join Waitlist</a>
+        <!-- Music Toggle -->
+        <button class="music-toggle" id="musicToggle" aria-label="Toggle Background Music">
+          <span class="music-icon" id="musicIcon">🔇</span>
+        </button>
+
+        <!-- Ambient Audio -->
+        <audio id="bgMusic" loop>
+          <!-- Using a placeholder remote raw URL for "light music with bird chirping sitar playing Om" -->
+          <source
+            src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_5ea3d85317.mp3?filename=om-mantra-chanting-with-flute-and-birds-ambient-123491.mp3"
+            type="audio/mpeg">
+        </audio>
+
+        <div class="nav-cta">
+          <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="nav.joinWaitlist">Join
+            Waitlist</a>
+        </div>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
       </div>
-
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
   </nav>
 
@@ -1020,9 +1038,9 @@
 
       <!-- Step Indicator -->
       <div class="waitlist-steps">
-        <div class="waitlist-step active" data-step="1"><span>1</span> Your Info</div>
-        <div class="waitlist-step" data-step="2"><span>2</span> Using For</div>
-        <div class="waitlist-step" data-step="3"><span>3</span> Interests</div>
+        <div class="waitlist-step active" data-step="1"><span>1</span> <span data-i18n="wl.step1">Your Info</span></div>
+        <div class="waitlist-step" data-step="2"><span>2</span> <span data-i18n="wl.step2">Using For</span></div>
+        <div class="waitlist-step" data-step="3"><span>3</span> <span data-i18n="wl.step3">Interests</span></div>
       </div>
 
       <form id="waitlistForm" onsubmit="return false;">
@@ -1030,44 +1048,67 @@
         <!-- STEP 1: Personal Info -->
         <div class="waitlist-panel active" id="waitlistStep1">
           <div class="waitlist-header">
-            <h3>🙏 Join the Antar Marg Waitlist</h3>
-            <p>Be among the first to experience the complete spiritual ecosystem.</p>
+            <h3 data-i18n="wl.title1">🙏 Join the Antar Marg Waitlist</h3>
+            <p data-i18n="wl.desc1">Be among the first to experience the complete spiritual ecosystem.</p>
           </div>
 
           <div class="form-group">
-            <label for="wl-name">Full Name *</label>
+            <label for="wl-name" data-i18n="wl.name">Full Name</label>
             <input type="text" id="wl-name" name="full_name" placeholder="Enter your full name" required>
           </div>
 
           <div class="form-group">
-            <label for="wl-email">Email Address *</label>
+            <label for="wl-email" data-i18n="wl.email">Email Address</label>
             <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label for="wl-city">City</label>
+              <label for="wl-city" data-i18n="wl.city">City</label>
               <input type="text" id="wl-city" name="city" placeholder="e.g. Mumbai">
             </div>
             <div class="form-group">
-              <label for="wl-state">State</label>
+              <label for="wl-state" data-i18n="wl.state">State</label>
               <input type="text" id="wl-state" name="state" placeholder="e.g. Maharashtra">
             </div>
           </div>
 
           <div class="form-group">
-            <label for="wl-country">Country</label>
+            <label for="wl-country" data-i18n="wl.country">Country</label>
             <input type="text" id="wl-country" name="country" placeholder="India" value="India">
           </div>
 
-          <button type="button" class="btn btn-primary waitlist-next" onclick="goToStep(2)">Continue →</button>
+          <div class="form-group" style="margin-top: 20px;" id="deviceGroup">
+            <label data-i18n="wl.deviceTitle">What device do you use? *</label>
+            <div class="device-options" style="display: flex; gap: 16px; margin-top: 8px;">
+              <label class="radio-card" style="flex: 1;">
+                <input type="radio" name="device_type" value="android">
+                <div class="radio-content"
+                  style="padding: 12px; border: 1px solid var(--border-gold); border-radius: 8px; text-align: center; cursor: pointer;">
+                  <span class="radio-icon">📱</span>
+                  <span class="radio-label" data-i18n="wl.deviceAndroid">Android</span>
+                </div>
+              </label>
+              <label class="radio-card" style="flex: 1;">
+                <input type="radio" name="device_type" value="ios">
+                <div class="radio-content"
+                  style="padding: 12px; border: 1px solid var(--border-gold); border-radius: 8px; text-align: center; cursor: pointer;">
+                  <span class="radio-icon">🍎</span>
+                  <span class="radio-label" data-i18n="wl.deviceIos">iPhone (iOS)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary waitlist-next" onclick="goToStep(2)"
+            data-i18n="wl.continue">Continue →</button>
         </div>
 
         <!-- STEP 2: Who is this for? -->
         <div class="waitlist-panel" id="waitlistStep2">
           <div class="waitlist-header">
-            <h3>Who will use Antar Marg?</h3>
-            <p>Select all that apply — this helps us personalize your experience.</p>
+            <h3 data-i18n="wl.title2">Who will use Antar Marg?</h3>
+            <p data-i18n="wl.desc2">Select all that apply — this helps us personalize your experience.</p>
           </div>
 
           <div class="checkbox-grid">
@@ -1136,16 +1177,17 @@
           </div>
 
           <div class="waitlist-nav-buttons">
-            <button type="button" class="btn btn-outline" onclick="goToStep(1)">← Back</button>
-            <button type="button" class="btn btn-primary" onclick="goToStep(3)">Continue →</button>
+            <button type="button" class="btn btn-outline" onclick="goToStep(1)" data-i18n="wl.back">← Back</button>
+            <button type="button" class="btn btn-primary" onclick="goToStep(3)" data-i18n="wl.continue">Continue
+              →</button>
           </div>
         </div>
 
         <!-- STEP 3: Feature Interests -->
         <div class="waitlist-panel" id="waitlistStep3">
           <div class="waitlist-header">
-            <h3>What excites you most?</h3>
-            <p>Select the features you're most interested in.</p>
+            <h3 data-i18n="wl.title3">What excites you most?</h3>
+            <p data-i18n="wl.desc3">Select the features you're most interested in.</p>
           </div>
 
           <div class="checkbox-grid">
@@ -1223,7 +1265,7 @@
           </div>
 
           <div class="form-group" style="margin-top: 16px;">
-            <label for="wl-referral">How did you hear about us?</label>
+            <label for="wl-referral" data-i18n="wl.referral">How did you hear about us?</label>
             <select id="wl-referral" name="referral_source">
               <option value="">Select one (optional)</option>
               <option value="youtube">YouTube</option>
@@ -1236,20 +1278,21 @@
           </div>
 
           <div class="waitlist-nav-buttons">
-            <button type="button" class="btn btn-outline" onclick="goToStep(2)">← Back</button>
+            <button type="button" class="btn btn-outline" onclick="goToStep(2)" data-i18n="wl.back">← Back</button>
             <button type="button" class="btn btn-primary waitlist-submit" id="waitlistSubmitBtn"
-              onclick="submitWaitlist()">🙏 Join Waitlist</button>
+              onclick="submitWaitlist()" data-i18n="wl.submit">🙏 Join Waitlist</button>
           </div>
         </div>
 
         <!-- SUCCESS -->
         <div class="waitlist-panel" id="waitlistSuccess" style="text-align: center; padding: 48px 24px;">
           <div style="font-size: 4rem; margin-bottom: 16px;">🙏</div>
-          <h3 style="margin-bottom: 12px;">Namaste! You're on the list!</h3>
-          <p style="color: var(--text-muted); margin-bottom: 8px;">We'll notify you as soon as Antar Marg is ready.</p>
+          <h3 style="margin-bottom: 12px;" data-i18n="wl.successTitle">Namaste! You're on the list!</h3>
+          <p style="color: var(--text-muted); margin-bottom: 8px;" data-i18n="wl.successDesc">We'll notify you as soon
+            as Antar Marg is ready.</p>
           <p style="color: var(--gold); font-family: var(--font-sanskrit); font-size: 1.1rem; margin-bottom: 24px;">॥
             शुभमस्तु ॥</p>
-          <button type="button" class="btn btn-outline" onclick="closeWaitlist()">Close</button>
+          <button type="button" class="btn btn-outline" onclick="closeWaitlist()" data-i18n="wl.close">Close</button>
         </div>
 
       </form>

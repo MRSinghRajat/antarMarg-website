@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS waitlist (
   city TEXT,
   state TEXT,
   country TEXT DEFAULT 'India',
+  device_type TEXT,
 
   -- Who is this app for? (can select multiple)
   usage_for TEXT[] NOT NULL DEFAULT '{}',
