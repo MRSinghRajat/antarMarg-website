@@ -312,11 +312,11 @@ const translations = {
     'footer.copy': '© 2026 Antar Marg. All rights reserved. Made with 🙏 for Sanatana Dharma.',
 
     // Waitlist
-    'wl.step1': 'Your Info',
-    'wl.step2': 'Using For',
-    'wl.step3': 'Interests',
+    'wl.step1': 'Join',
+    'wl.step2': 'About You',
+    'wl.step3': 'Customize',
     'wl.title1': '🙏 Join the Antar Marg Waitlist',
-    'wl.desc1': 'Be among the first to experience the complete spiritual ecosystem.',
+    'wl.desc1': 'Capture your spot for the launch of the sacred ecosystem.',
     'wl.name': 'Full Name',
     'wl.email': 'Email Address',
     'wl.city': 'City',
@@ -327,10 +327,10 @@ const translations = {
     'wl.deviceIos': 'iPhone (iOS)',
     'wl.continue': 'Continue →',
     'wl.back': '← Back',
-    'wl.title2': 'Who will use Antar Marg?',
-    'wl.desc2': 'Select all that apply — this helps us personalize your experience.',
+    'wl.title2': 'Help us personalize your journey',
+    'wl.desc2': 'This helps us tailor the experience for you (Optional).',
     'wl.title3': 'What excites you most?',
-    'wl.desc3': 'Select the features you\'re most looking forward to.',
+    'wl.desc3': 'Select the features you\'re most interested in.',
     'wl.referral': 'How did you hear about us?',
     'wl.submit': '🙏 Join Waitlist',
     'wl.successTitle': 'Namaste! You\'re on the list!',
@@ -439,25 +439,25 @@ const translations = {
     'footer.copy': '© 2026 अंतर मार्ग। सर्वाधिकार सुरक्षित। 🙏 सनातन धर्म के लिए बनाया गया।',
 
     // Waitlist
-    'wl.step1': 'जानकारी',
-    'wl.step2': 'किसके लिए',
-    'wl.step3': 'रुचियाँ',
+    'wl.step1': 'शामिल हों',
+    'wl.step2': 'आपके बारे में',
+    'wl.step3': 'अनुकूलित करें',
     'wl.title1': '🙏 अंतर मार्ग वेटलिस्ट में शामिल हों',
-    'wl.desc1': 'संपूर्ण आध्यात्मिक पारिस्थितिकी तंत्र का अनुभव करने वाले पहले लोगों में शामिल हों।',
+    'wl.desc1': 'पवित्र पारिस्थितिकी तंत्र के लॉन्च के लिए अपना स्थान सुरक्षित करें।',
     'wl.name': 'पूरा नाम',
     'wl.email': 'ईमेल पता',
     'wl.city': 'शहर',
     'wl.state': 'राज्य',
     'wl.country': 'देश',
     'wl.deviceTitle': 'आप कौन सा डिवाइस इस्तेमाल करते हैं?',
-    'wl.deviceAndroid': 'एंड्रॉयड (Android)',
-    'wl.deviceIos': 'आईफोन (iPhone)',
-    'wl.continue': 'आगे →',
+    'wl.deviceAndroid': 'एंड्रॉयड',
+    'wl.deviceIos': 'आईफोन (iOS)',
+    'wl.continue': 'स्थान सुरक्षित करें →',
     'wl.back': '← पीछे',
-    'wl.title2': 'अंतर मार्ग कौन उपयोग करेगा?',
-    'wl.desc2': 'लागू होने वाले सभी चुनें — इससे हमें आपका अनुभव व्यक्तिगत बनाने में मदद मिलती है।',
+    'wl.title2': 'अपनी यात्रा को निजीकृत करें',
+    'wl.desc2': 'यह हमें आपके अनुभव को बेहतर बनाने में मदद करता है (वैकल्पिक)।',
     'wl.title3': 'आपको सबसे ज़्यादा क्या पसंद है?',
-    'wl.desc3': 'जिन विशेषताओं की आप सबसे ज़्यादा प्रतीक्षा कर रहे हैं उन्हें चुनें।',
+    'wl.desc3': 'उन सुविधाओं का चयन करें जिनमें आपकी रुचि है।',
     'wl.referral': 'आपने हमारे बारे में कैसे सुना?',
     'wl.submit': '🙏 वेटलिस्ट जॉइन करें',
     'wl.successTitle': 'नमस्ते! आप सूची में हैं!',
@@ -600,15 +600,9 @@ function goToStep(step, isReset) {
 
 function validateStep(step) {
   if (step === 1) {
-    const name = document.getElementById('wl-name').value.trim();
     const email = document.getElementById('wl-email').value.trim();
     const deviceType = document.querySelector('input[name="device_type"]:checked');
 
-    if (!name) {
-      shakeField('wl-name');
-      document.getElementById('wl-name').focus();
-      return false;
-    }
     if (!email || !email.includes('@') || !email.includes('.')) {
       shakeField('wl-email');
       document.getElementById('wl-email').focus();
@@ -616,12 +610,37 @@ function validateStep(step) {
     }
     if (!deviceType) {
       shakeField('deviceGroup');
-      // Adding a temporary warning message if needed, or just let it shake
       return false;
     }
+
+    // Partial Submit logic
+    partialSubmitWaitlist();
     return true;
   }
-  return true; // Steps 2 & 3 are optional selections
+  return true; // Steps 2 & 3 are optional
+}
+
+async function partialSubmitWaitlist() {
+  const email = document.getElementById('wl-email').value.trim();
+  const deviceType = document.querySelector('input[name="device_type"]:checked')?.value;
+
+  if (!email || !deviceType) return;
+
+  const data = {
+    email: email,
+    device_type: deviceType,
+    partial: true,
+    signup_at: new Date().toISOString()
+  };
+
+  // Silently send to Supabase or logs
+  if (supabaseClient) {
+    try {
+      await supabaseClient.from('waitlist').upsert([data], { onConflict: 'email' });
+    } catch (e) { console.warn('Partial submit failed:', e); }
+  } else {
+    console.log('📋 Partial signup:', data);
+  }
 }
 
 function shakeField(id) {
@@ -689,6 +708,12 @@ async function submitWaitlist() {
     console.log('📋 Waitlist signup (Supabase not configured):', data);
   }
 
+  // Gathering referral ID or generating one
+  const userId = Math.random().toString(36).substring(2, 9);
+  const refLink = `https://antarmarg.com?ref=${userId}`;
+  const referralInput = document.getElementById('referralLink');
+  if (referralInput) referralInput.value = refLink;
+
   // Show success
   document.querySelectorAll('.waitlist-panel').forEach(p => p.classList.remove('active'));
   document.getElementById('waitlistSuccess').classList.add('active');
@@ -696,6 +721,18 @@ async function submitWaitlist() {
 
   btn.classList.remove('loading');
   btn.textContent = '🙏 Join Waitlist';
+}
+
+function copyReferral() {
+  const copyText = document.getElementById("referralLink");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+
+  const btn = event.target;
+  const originalText = btn.textContent;
+  btn.textContent = "Copied!";
+  setTimeout(() => { btn.textContent = originalText; }, 2000);
 }
 
 function getCheckedValues(name) {
@@ -751,8 +788,13 @@ function getCheckedValues(name) {
     document.removeEventListener('scroll', startMusicOnInteract);
   };
 
-  document.addEventListener('click', startMusicOnInteract);
-  document.addEventListener('touchstart', startMusicOnInteract);
+  // Attempt to play immediately on load (may be blocked by browser)
+  window.addEventListener('load', () => {
+    toggleSound(true);
+  });
+
+  document.addEventListener('click', startMusicOnInteract, { once: true });
+  document.addEventListener('touchstart', startMusicOnInteract, { once: true });
   document.addEventListener('scroll', startMusicOnInteract, { once: true });
 
   // Manual toggle
@@ -781,4 +823,22 @@ function getCheckedValues(name) {
       musicToggle.setAttribute('aria-label', 'Play Background Music');
     }
   }
+})();
+
+// --- Social Proof Counter ---
+(function initSocialProof() {
+  const counts = document.querySelectorAll('.waitlist-count');
+  if (!counts.length) return;
+
+  let baseCount = 1247;
+
+  function updateCount() {
+    baseCount += Math.floor(Math.random() * 3);
+    counts.forEach(el => {
+      el.textContent = baseCount.toLocaleString();
+    });
+    setTimeout(updateCount, 15000 + Math.random() * 30000);
+  }
+
+  updateCount();
 })();

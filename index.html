@@ -54,9 +54,7 @@
         <!-- Ambient Audio -->
         <audio id="bgMusic" loop>
           <!-- Using a placeholder remote raw URL for "light music with bird chirping sitar playing Om" -->
-          <source
-            src="https://cdn.pixabay.com/download/audio/2022/10/30/audio_5ea3d85317.mp3?filename=om-mantra-chanting-with-flute-and-birds-ambient-123491.mp3"
-            type="audio/mpeg">
+          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
         </audio>
 
         <div class="nav-cta">
@@ -91,6 +89,10 @@
           Waitlist</a>
         <a href="#features" class="btn btn-outline" data-i18n="hero.exploreBtn">✦ Explore Features</a>
       </div>
+      <p class="social-proof-small reveal"
+        style="margin-top: 16px; color: var(--gold); font-size: 0.8rem; font-family: var(--font-label); letter-spacing: 1px;">
+        <span class="pulse-dot"></span> Join <span class="waitlist-count">1,247</span> seekers already on the waitlist
+      </p>
     </div>
 
     <!-- Sacred Verse Marquee (behind hero content) -->
@@ -1038,28 +1040,69 @@
 
       <!-- Step Indicator -->
       <div class="waitlist-steps">
-        <div class="waitlist-step active" data-step="1"><span>1</span> <span data-i18n="wl.step1">Your Info</span></div>
-        <div class="waitlist-step" data-step="2"><span>2</span> <span data-i18n="wl.step2">Using For</span></div>
-        <div class="waitlist-step" data-step="3"><span>3</span> <span data-i18n="wl.step3">Interests</span></div>
+        <div class="waitlist-step active" data-step="1"><span>1</span> <span data-i18n="wl.step1">Get Access</span>
+        </div>
+        <div class="waitlist-step" data-step="2"><span>2</span> <span data-i18n="wl.step2">About You</span></div>
+        <div class="waitlist-step" data-step="3"><span>3</span> <span data-i18n="wl.step3">Customize</span></div>
       </div>
 
       <form id="waitlistForm" onsubmit="return false;">
 
-        <!-- STEP 1: Personal Info -->
+        <!-- STEP 1: Core Info (MUST HAVE) -->
         <div class="waitlist-panel active" id="waitlistStep1">
           <div class="waitlist-header">
             <h3 data-i18n="wl.title1">🙏 Join the Antar Marg Waitlist</h3>
-            <p data-i18n="wl.desc1">Be among the first to experience the complete spiritual ecosystem.</p>
+            <p data-i18n="wl.desc1">Capture your spot for the launch of the sacred ecosystem.</p>
+            <div class="incentive-badge">
+              <span class="incentive-icon">✨</span>
+              <span class="incentive-text">Get <strong>500 Karma Points</strong> & 1 Month <strong>PLUS
+                  Free</strong></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="wl-email" data-i18n="wl.email">Email Address *</label>
+            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
+          </div>
+
+          <div class="form-group" style="margin-top: 20px;" id="deviceGroup">
+            <label data-i18n="wl.deviceTitle">What device do you use? *</label>
+            <div class="device-options" style="display: flex; gap: 16px; margin-top: 8px;">
+              <label class="radio-card" style="flex: 1;">
+                <input type="radio" name="device_type" value="android" checked>
+                <div class="radio-content">
+                  <span class="radio-icon">📱</span>
+                  <span class="radio-label" data-i18n="wl.deviceAndroid">Android</span>
+                </div>
+              </label>
+              <label class="radio-card" style="flex: 1;">
+                <input type="radio" name="device_type" value="ios">
+                <div class="radio-content">
+                  <span class="radio-icon">🍎</span>
+                  <span class="radio-label" data-i18n="wl.deviceIos">iPhone (iOS)</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary waitlist-next" onclick="goToStep(2)"
+            data-i18n="wl.continue">Claim Your Spot →</button>
+
+          <p style="text-align: center; font-size: 0.7rem; color: var(--text-muted); margin-top: 12px;">
+            Join <span class="waitlist-count">1,247</span> seekers already on the path.
+          </p>
+        </div>
+
+        <!-- STEP 2: Optional Info -->
+        <div class="waitlist-panel" id="waitlistStep2">
+          <div class="waitlist-header">
+            <h3 data-i18n="wl.title2">Help us personalize your journey</h3>
+            <p data-i18n="wl.desc2">This helps us tailor the experience for you (Optional).</p>
           </div>
 
           <div class="form-group">
             <label for="wl-name" data-i18n="wl.name">Full Name</label>
-            <input type="text" id="wl-name" name="full_name" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="form-group">
-            <label for="wl-email" data-i18n="wl.email">Email Address</label>
-            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
+            <input type="text" id="wl-name" name="full_name" placeholder="Enter your full name">
           </div>
 
           <div class="form-row">
@@ -1073,105 +1116,32 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label for="wl-country" data-i18n="wl.country">Country</label>
-            <input type="text" id="wl-country" name="country" placeholder="India" value="India">
-          </div>
-
-          <div class="form-group" style="margin-top: 20px;" id="deviceGroup">
-            <label data-i18n="wl.deviceTitle">What device do you use? *</label>
-            <div class="device-options" style="display: flex; gap: 16px; margin-top: 8px;">
-              <label class="radio-card" style="flex: 1;">
-                <input type="radio" name="device_type" value="android">
-                <div class="radio-content"
-                  style="padding: 12px; border: 1px solid var(--border-gold); border-radius: 8px; text-align: center; cursor: pointer;">
-                  <span class="radio-icon">📱</span>
-                  <span class="radio-label" data-i18n="wl.deviceAndroid">Android</span>
-                </div>
-              </label>
-              <label class="radio-card" style="flex: 1;">
-                <input type="radio" name="device_type" value="ios">
-                <div class="radio-content"
-                  style="padding: 12px; border: 1px solid var(--border-gold); border-radius: 8px; text-align: center; cursor: pointer;">
-                  <span class="radio-icon">🍎</span>
-                  <span class="radio-label" data-i18n="wl.deviceIos">iPhone (iOS)</span>
-                </div>
-              </label>
-            </div>
-          </div>
-
-          <button type="button" class="btn btn-primary waitlist-next" onclick="goToStep(2)"
-            data-i18n="wl.continue">Continue →</button>
-        </div>
-
-        <!-- STEP 2: Who is this for? -->
-        <div class="waitlist-panel" id="waitlistStep2">
-          <div class="waitlist-header">
-            <h3 data-i18n="wl.title2">Who will use Antar Marg?</h3>
-            <p data-i18n="wl.desc2">Select all that apply — this helps us personalize your experience.</p>
-          </div>
-
-          <div class="checkbox-grid">
-            <label class="checkbox-card">
+          <div class="checkbox-grid" style="margin-top: 20px;">
+            <p class="form-label-small"
+              style="grid-column: 1/-1; margin-bottom: 8px; font-size: 0.7rem; color: var(--gold); text-transform: uppercase;">
+              Who will use this?</p>
+            <label class="checkbox-card small">
               <input type="checkbox" name="usage_for" value="self">
               <div class="checkbox-content">
-                <span class="checkbox-icon">🧘</span>
-                <span class="checkbox-label">Myself</span>
-                <span class="checkbox-desc">Personal spiritual growth</span>
+                <span class="checkbox-label">Self</span>
               </div>
             </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="usage_for" value="spouse">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">💑</span>
-                <span class="checkbox-label">Spouse / Partner</span>
-                <span class="checkbox-desc">Shared spiritual journey</span>
-              </div>
-            </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="usage_for" value="expecting_mother">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🤰</span>
-                <span class="checkbox-label">Expecting Mother</span>
-                <span class="checkbox-desc">Garbh Sanskar journey</span>
-              </div>
-            </label>
-
-            <label class="checkbox-card">
+            <label class="checkbox-card small">
               <input type="checkbox" name="usage_for" value="children">
               <div class="checkbox-content">
-                <span class="checkbox-icon">👶</span>
                 <span class="checkbox-label">Children</span>
-                <span class="checkbox-desc">Little Sadhu program</span>
               </div>
             </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="usage_for" value="parents_elders">
+            <label class="checkbox-card small">
+              <input type="checkbox" name="usage_for" value="elders">
               <div class="checkbox-content">
-                <span class="checkbox-icon">🙏</span>
-                <span class="checkbox-label">Parents / Elders</span>
-                <span class="checkbox-desc">Vanaprastha & daily practice</span>
+                <span class="checkbox-label">Elders</span>
               </div>
             </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="usage_for" value="student">
+            <label class="checkbox-card small">
+              <input type="checkbox" name="usage_for" value="expecting">
               <div class="checkbox-content">
-                <span class="checkbox-icon">📚</span>
-                <span class="checkbox-label">Student</span>
-                <span class="checkbox-desc">Learning scriptures & wisdom</span>
-              </div>
-            </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="usage_for" value="family">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">👨‍👩‍👧‍👦</span>
-                <span class="checkbox-label">Whole Family</span>
-                <span class="checkbox-desc">Family spiritual practices</span>
+                <span class="checkbox-label">Expecting</span>
               </div>
             </label>
           </div>
@@ -1183,120 +1153,215 @@
           </div>
         </div>
 
-        <!-- STEP 3: Feature Interests -->
-        <div class="waitlist-panel" id="waitlistStep3">
-          <div class="waitlist-header">
-            <h3 data-i18n="wl.title3">What excites you most?</h3>
-            <p data-i18n="wl.desc3">Select the features you're most interested in.</p>
-          </div>
+        <div class="checkbox-grid">
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="self">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">🧘</span>
+              <span class="checkbox-label">Myself</span>
+              <span class="checkbox-desc">Personal spiritual growth</span>
+            </div>
+          </label>
 
-          <div class="checkbox-grid">
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="sacred_texts">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">📖</span>
-                <span class="checkbox-label">Sacred Texts</span>
-                <span class="checkbox-desc">Gita, Ramayana, Chalisa</span>
-              </div>
-            </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="spouse">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">💑</span>
+              <span class="checkbox-label">Spouse / Partner</span>
+              <span class="checkbox-desc">Shared spiritual journey</span>
+            </div>
+          </label>
 
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="daily_practice">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🪔</span>
-                <span class="checkbox-label">Daily Practice</span>
-                <span class="checkbox-desc">Streaks, mantras, aartis</span>
-              </div>
-            </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="expecting_mother">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">🤰</span>
+              <span class="checkbox-label">Expecting Mother</span>
+              <span class="checkbox-desc">Garbh Sanskar journey</span>
+            </div>
+          </label>
 
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="ai_guru">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🔮</span>
-                <span class="checkbox-label">AI Guru</span>
-                <span class="checkbox-desc">Spiritual Q&A, guidance</span>
-              </div>
-            </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="children">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">👶</span>
+              <span class="checkbox-label">Children</span>
+              <span class="checkbox-desc">Little Sadhu program</span>
+            </div>
+          </label>
 
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="journeys">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🌱</span>
-                <span class="checkbox-label">Spiritual Journeys</span>
-                <span class="checkbox-desc">Sadhanas & milestones</span>
-              </div>
-            </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="parents_elders">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">🙏</span>
+              <span class="checkbox-label">Parents / Elders</span>
+              <span class="checkbox-desc">Vanaprastha & daily practice</span>
+            </div>
+          </label>
 
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="stories">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🧠</span>
-                <span class="checkbox-label">Stories & Wisdom</span>
-                <span class="checkbox-desc">61 deity stories</span>
-              </div>
-            </label>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="student">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">📚</span>
+              <span class="checkbox-label">Student</span>
+              <span class="checkbox-desc">Learning scriptures & wisdom</span>
+            </div>
+          </label>
 
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="audio">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🎵</span>
-                <span class="checkbox-label">Audio Library</span>
-                <span class="checkbox-desc">Bhajans, mantras, meditation</span>
-              </div>
-            </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="kundli">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">⭐</span>
-                <span class="checkbox-label">Kundli & Numerology</span>
-                <span class="checkbox-desc">Birth charts & readings</span>
-              </div>
-            </label>
-
-            <label class="checkbox-card">
-              <input type="checkbox" name="interests" value="meditation">
-              <div class="checkbox-content">
-                <span class="checkbox-icon">🧘</span>
-                <span class="checkbox-label">Meditation</span>
-                <span class="checkbox-desc">Guided sessions & ambient</span>
-              </div>
-            </label>
-          </div>
-
-          <div class="form-group" style="margin-top: 16px;">
-            <label for="wl-referral" data-i18n="wl.referral">How did you hear about us?</label>
-            <select id="wl-referral" name="referral_source">
-              <option value="">Select one (optional)</option>
-              <option value="youtube">YouTube</option>
-              <option value="instagram">Instagram</option>
-              <option value="friend">Friend / Family</option>
-              <option value="search">Google Search</option>
-              <option value="social_media">Other Social Media</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="waitlist-nav-buttons">
-            <button type="button" class="btn btn-outline" onclick="goToStep(2)" data-i18n="wl.back">← Back</button>
-            <button type="button" class="btn btn-primary waitlist-submit" id="waitlistSubmitBtn"
-              onclick="submitWaitlist()" data-i18n="wl.submit">🙏 Join Waitlist</button>
-          </div>
+          <label class="checkbox-card">
+            <input type="checkbox" name="usage_for" value="family">
+            <div class="checkbox-content">
+              <span class="checkbox-icon">👨‍👩‍👧‍👦</span>
+              <span class="checkbox-label">Whole Family</span>
+              <span class="checkbox-desc">Family spiritual practices</span>
+            </div>
+          </label>
         </div>
 
-        <!-- SUCCESS -->
-        <div class="waitlist-panel" id="waitlistSuccess" style="text-align: center; padding: 48px 24px;">
-          <div style="font-size: 4rem; margin-bottom: 16px;">🙏</div>
-          <h3 style="margin-bottom: 12px;" data-i18n="wl.successTitle">Namaste! You're on the list!</h3>
-          <p style="color: var(--text-muted); margin-bottom: 8px;" data-i18n="wl.successDesc">We'll notify you as soon
-            as Antar Marg is ready.</p>
-          <p style="color: var(--gold); font-family: var(--font-sanskrit); font-size: 1.1rem; margin-bottom: 24px;">॥
-            शुभमस्तु ॥</p>
-          <button type="button" class="btn btn-outline" onclick="closeWaitlist()" data-i18n="wl.close">Close</button>
+        <div class="waitlist-nav-buttons">
+          <button type="button" class="btn btn-outline" onclick="goToStep(1)" data-i18n="wl.back">← Back</button>
+          <button type="button" class="btn btn-primary" onclick="goToStep(3)" data-i18n="wl.continue">Continue
+            →</button>
         </div>
-
-      </form>
     </div>
+
+    <!-- STEP 3: Feature Interests -->
+    <div class="waitlist-panel" id="waitlistStep3">
+      <div class="waitlist-header">
+        <h3 data-i18n="wl.title3">What excites you most?</h3>
+        <p data-i18n="wl.desc3">Select the features you're most interested in.</p>
+      </div>
+
+      <div class="checkbox-grid">
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="sacred_texts">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">📖</span>
+            <span class="checkbox-label">Sacred Texts</span>
+            <span class="checkbox-desc">Gita, Ramayana, Chalisa</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="daily_practice">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🪔</span>
+            <span class="checkbox-label">Daily Practice</span>
+            <span class="checkbox-desc">Streaks, mantras, aartis</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="ai_guru">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🔮</span>
+            <span class="checkbox-label">AI Guru</span>
+            <span class="checkbox-desc">Spiritual Q&A, guidance</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="journeys">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🌱</span>
+            <span class="checkbox-label">Spiritual Journeys</span>
+            <span class="checkbox-desc">Sadhanas & milestones</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="stories">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🧠</span>
+            <span class="checkbox-label">Stories & Wisdom</span>
+            <span class="checkbox-desc">61 deity stories</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="audio">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🎵</span>
+            <span class="checkbox-label">Audio Library</span>
+            <span class="checkbox-desc">Bhajans, mantras, meditation</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="kundli">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">⭐</span>
+            <span class="checkbox-label">Kundli & Numerology</span>
+            <span class="checkbox-desc">Birth charts & readings</span>
+          </div>
+        </label>
+
+        <label class="checkbox-card">
+          <input type="checkbox" name="interests" value="meditation">
+          <div class="checkbox-content">
+            <span class="checkbox-icon">🧘</span>
+            <span class="checkbox-label">Meditation</span>
+            <span class="checkbox-desc">Guided sessions & ambient</span>
+          </div>
+        </label>
+      </div>
+
+      <div class="form-group" style="margin-top: 16px;">
+        <label for="wl-referral" data-i18n="wl.referral">How did you hear about us?</label>
+        <select id="wl-referral" name="referral_source">
+          <option value="">Select one (optional)</option>
+          <option value="youtube">YouTube</option>
+          <option value="instagram">Instagram</option>
+          <option value="friend">Friend / Family</option>
+          <option value="search">Google Search</option>
+          <option value="social_media">Other Social Media</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="waitlist-nav-buttons">
+        <button type="button" class="btn btn-outline" onclick="goToStep(2)" data-i18n="wl.back">← Back</button>
+        <button type="button" class="btn btn-primary waitlist-submit" id="waitlistSubmitBtn" onclick="submitWaitlist()"
+          data-i18n="wl.submit">🙏 Join Waitlist</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="waitlist-panel" id="waitlistSuccess" style="text-align: center; padding: 40px 24px;">
+      <div class="success-icon-wrapper" style="font-size: 3.5rem; margin-bottom: 20px;">
+        <div class="success-icon-circle">🙏</div>
+      </div>
+      <h3 style="margin-bottom: 8px;" data-i18n="wl.successTitle">Namaste! You're on the list!</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;" data-i18n="wl.successDesc">We'll
+        notify you as soon as Antar Marg is ready.</p>
+
+      <div class="referral-box"
+        style="background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--gold); border-radius: 16px; padding: 20px; margin-bottom: 24px;">
+        <p style="color: var(--gold-light); font-size: 0.85rem; margin-bottom: 12px; font-weight: 600;">🎁 UNLOCK REWARD
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Share with 3 friends to unlock an
+          <strong>exclusive Hanuman Chalisa audio track</strong> right now!</p>
+        <div class="referral-link-wrapper"
+          style="display: flex; gap: 8px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 8px; margin-bottom: 12px;">
+          <input type="text" id="referralLink" value="https://antarmarg.com?ref=USER_ID" readonly
+            style="background: none; border: none; color: var(--gold); font-size: 0.7rem; flex: 1;">
+          <button onclick="copyReferral()"
+            style="background: var(--gold); border: none; border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--bg-primary); font-size: 0.7rem; font-weight: 600;">Copy</button>
+        </div>
+        <div class="referral-share-buttons" style="display: flex; gap: 10px; justify-content: center;">
+          <a href="#" class="share-btn whatsapp" style="font-size: 1.2rem;">📱</a>
+          <a href="#" class="share-btn twitter" style="font-size: 1.2rem;">🐦</a>
+          <a href="#" class="share-btn mail" style="font-size: 1.2rem;">✉️</a>
+        </div>
+      </div>
+
+      <p style="color: var(--gold); font-family: var(--font-sanskrit); font-size: 1.1rem; margin-bottom: 24px;">॥
+        शुभमस्तु ॥</p>
+      <button type="button" class="btn btn-outline" onclick="closeWaitlist()" data-i18n="wl.close">Close</button>
+    </div>
+
+    </form>
+  </div>
   </div>
 
   <script src="script.js"></script>

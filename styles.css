@@ -181,6 +181,24 @@ h3 {
   color: var(--bg-primary);
 }
 
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
+  transition: 0.5s;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
 .btn-outline {
   background: transparent;
   color: var(--gold-light);
@@ -1987,8 +2005,29 @@ h3 {
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
+  .nav-logo-img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .nav-logo-text {
+    font-size: 1.1rem;
+  }
+
+  .nav-actions {
+    gap: 10px;
+  }
+
   .nav-cta {
-    display: none;
+    display: flex;
+    order: -1;
+    /* Place it before toggles maybe? Or keep it after. User said "on top", usually means prominent. */
+  }
+
+  .nav-cta .btn {
+    padding: 8px 16px;
+    font-size: 0.65rem;
+    letter-spacing: 1px;
   }
 
   .stats-grid {
@@ -2025,6 +2064,18 @@ h3 {
     gap: 16px;
     text-align: center;
   }
+
+  .verse-sanskrit {
+    font-size: 1.4rem;
+  }
+
+  .verse-ref {
+    font-size: 0.6rem;
+  }
+
+  .marquee-verse {
+    padding: 0 24px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2041,6 +2092,36 @@ h3 {
   .stats-grid {
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+  }
+
+  .lang-toggle {
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+  }
+
+  .lang-label {
+    display: block;
+    /* Keep it simple */
+  }
+
+  .hero-tagline {
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+  }
+
+  .hero-hindi {
+    font-size: 2.2rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+    padding: 0 10px;
   }
 }
 
@@ -2077,7 +2158,17 @@ h3 {
   overflow-y: auto;
   position: relative;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.08);
-  animation: slideUp 0.4s ease;
+  animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.waitlist-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.waitlist-modal::-webkit-scrollbar-thumb {
+  background: var(--border-gold);
+  border-radius: 10px;
 }
 
 @keyframes fadeIn {
@@ -2131,10 +2222,11 @@ h3 {
 .waitlist-steps {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 0;
-  padding: 32px 24px 8px;
+  padding: 40px 24px 10px;
   position: relative;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
 }
 
 .waitlist-step {
@@ -2146,12 +2238,31 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 0 10px 15px;
   flex: 1;
   position: relative;
-  transition: var(--transition);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
+}
+
+.waitlist-step::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: transparent;
+  transition: var(--transition);
+}
+
+.waitlist-step.active::after {
+  background: var(--gold);
+}
+
+.waitlist-step.completed::after {
+  background: #4ade80;
 }
 
 .waitlist-step span:first-child {
@@ -2204,7 +2315,19 @@ h3 {
 
 .waitlist-panel.active {
   display: block;
-  animation: fadeIn 0.3s ease;
+  animation: panelEntry 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes panelEntry {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .waitlist-header {
@@ -2374,6 +2497,146 @@ h3 {
   opacity: 0.7;
 }
 
+.success-icon-circle {
+  width: 100px;
+  height: 100px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  animation: successPulse 2s infinite;
+}
+
+@keyframes successPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+    transform: scale(1);
+  }
+
+  70% {
+    box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+    transform: scale(1.05);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+    transform: scale(1);
+  }
+}
+
+/* --- Conversion Optimization --- */
+.floating-cta-mobile {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  width: calc(100% - 48px);
+  max-width: 320px;
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .floating-cta-mobile {
+    display: block;
+  }
+}
+
+.floating-cta-mobile .btn {
+  width: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.4);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cta-badge {
+  font-size: 0.55rem;
+  letter-spacing: 1px;
+  background: var(--gold-light);
+  color: var(--bg-primary);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-weight: 700;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.checkbox-card.small .checkbox-content {
+  padding: 8px 12px;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.checkbox-card.small .checkbox-label {
+  font-size: 0.65rem;
+}
+
+.incentive-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-top: 16px;
+  animation: pulse-border 2s infinite;
+}
+
+@keyframes pulse-border {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 6px rgba(212, 175, 55, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+  }
+}
+
+.incentive-icon {
+  font-size: 1.2rem;
+}
+
+.incentive-text {
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  line-height: 1.4;
+}
+
+.pulse-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  margin-right: 6px;
+  box-shadow: 0 0 0 rgba(74, 222, 128, 0.4);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(74, 222, 128, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0);
+  }
+}
+
 /* Responsive waitlist */
 @media (max-width: 480px) {
   .waitlist-modal {
@@ -2395,8 +2658,27 @@ h3 {
   }
 
   .waitlist-step {
-    font-size: 0.55rem;
-    padding: 4px 8px;
+    font-size: 0.5rem;
+    padding: 0 4px 10px;
+  }
+
+  .waitlist-step span:last-child {
+    display: none;
+    /* Hide text on very small screens to avoid merging */
+  }
+
+  .waitlist-step.active span:last-child {
+    display: block;
+    /* Show only active step text? Or maybe keep it simple */
+    position: absolute;
+    top: 45px;
+    width: max-content;
+    font-size: 0.5rem;
+  }
+
+  .waitlist-steps {
+    padding-bottom: 25px;
+    /* Extra space for active label */
   }
 
   .form-row {
