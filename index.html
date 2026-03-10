@@ -46,25 +46,13 @@
           <span class="lang-label" id="langLabel">हिंदी</span>
         </button>
 
-        <!-- Music Toggle -->
-        <button class="music-toggle" id="musicToggle" aria-label="Toggle Background Music">
-          <span class="music-icon" id="musicIcon">🔇</span>
-        </button>
-
-        <!-- Ambient Audio -->
-        <audio id="bgMusic" loop>
-          <!-- Using a placeholder remote raw URL for "light music with bird chirping sitar playing Om" -->
-          <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        </audio>
-
-        <div class="nav-cta">
-          <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="nav.joinWaitlist">Join
-            Waitlist</a>
-        </div>
-
         <button class="hamburger" id="hamburger" aria-label="Toggle menu">
           <span></span><span></span><span></span>
         </button>
+      </div>
+
+      <div class="nav-cta">
+        <a href="#" class="btn btn-primary" onclick="openWaitlist(event)" data-i18n="nav.joinWaitlist">Join Waitlist</a>
       </div>
     </div>
   </nav>
@@ -439,8 +427,8 @@
           <span class="stat-label">Guided Journeys</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number" data-target="108" data-suffix="+" data-format="">0</span>
-          <span class="stat-label">Wisdom Audios</span>
+          <span class="stat-number" data-target="99" data-suffix="+" data-format="">0</span>
+          <span class="stat-label">Cities Reached</span>
         </div>
       </div>
     </div>
@@ -477,7 +465,7 @@
         <div class="feature-card reveal">
           <span class="feature-icon">🙏</span>
           <h3>Daily Practice Hub</h3>
-          <p>Daily verse from Gita/Ramayana, morning prayers & evening aartis, mantra counter with audio, and streak
+          <p>Daily verse from Gita/Ramayana, morning prayers & evening aartis, mantra counter, and streak
             tracking — your personal Darshan system.</p>
           <div class="feature-tags">
             <span class="feature-tag">365-Day Streak</span>
@@ -512,18 +500,6 @@
           </div>
         </div>
 
-        <!-- Audio Library -->
-        <div class="feature-card reveal">
-          <span class="feature-icon">🎵</span>
-          <h3>Sacred Audio Library</h3>
-          <p>Aartis, mantras, beej mantras, deity collections, meditation ambient (Om series up to 108 min), bhajans,
-            festival specials & Gita chapter recitations.</p>
-          <div class="feature-tags">
-            <span class="feature-tag">Mantras</span>
-            <span class="feature-tag">Bhajans</span>
-            <span class="feature-tag">Meditation</span>
-          </div>
-        </div>
 
         <!-- Spiritual Journeys -->
         <div class="feature-card reveal">
@@ -787,56 +763,6 @@
   </section>
 
   <!-- ==================== AUDIO ==================== -->
-  <section class="audio-section" id="audio">
-    <div class="container">
-      <div class="text-center">
-        <span class="section-label reveal" data-i18n="audio.label">Divine Sounds</span>
-        <h2 class="section-title reveal" data-i18n="audio.title">Sacred <span class="gradient-text">Audio Library</span>
-        </h2>
-        <p class="section-subtitle reveal" data-i18n="audio.subtitle">Immerse yourself in mantras, bhajans, aartis, and
-          meditation sounds curated
-          for your spiritual practice.</p>
-      </div>
-
-      <div class="audio-grid stagger-children">
-        <div class="audio-card reveal">
-          <span class="audio-icon">🌅</span>
-          <h4>Daily Practice</h4>
-          <p>Morning aartis, Gayatri mantra, evening prayers</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">📿</span>
-          <h4>Mantras</h4>
-          <p>Beej mantras, Navagraha, deity-specific chants</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">🙏</span>
-          <h4>Deity Collections</h4>
-          <p>6-8 tracks per deity — Shiva, Krishna, Durga & more</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">🧘</span>
-          <h4>Meditation & Ambient</h4>
-          <p>Om series: 5, 11, 21 & 108 minute sessions</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">🪔</span>
-          <h4>Festival Specials</h4>
-          <p>Navratri, Diwali, Janmashtami collections</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">🎶</span>
-          <h4>Bhajans</h4>
-          <p>Classic devotional songs for all deities</p>
-        </div>
-        <div class="audio-card reveal">
-          <span class="audio-icon">📖</span>
-          <h4>Text Recitations</h4>
-          <p>Gita chapters, Sunderkand, stotrams</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ==================== PRICING ==================== -->
   <section class="pricing" id="pricing">
@@ -990,7 +916,6 @@
             <li><a href="#features">Sacred Texts</a></li>
             <li><a href="#features">Daily Practice</a></li>
             <li><a href="#ai-guru">AI Guru</a></li>
-            <li><a href="#audio">Audio Library</a></li>
           </ul>
         </div>
 
@@ -1339,8 +1264,8 @@
         style="background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--gold); border-radius: 16px; padding: 20px; margin-bottom: 24px;">
         <p style="color: var(--gold-light); font-size: 0.85rem; margin-bottom: 12px; font-weight: 600;">🎁 UNLOCK REWARD
         </p>
-        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 16px;">Share with 3 friends to unlock an
-          <strong>exclusive Hanuman Chalisa audio track</strong> right now!</p>
+        <p style="margin-top: 12px; font-size: 0.85rem; color: var(--gold-light); opacity: 0.9;">🙏 Join 1,247 others
+          and get early access to features!</p>
         <div class="referral-link-wrapper"
           style="display: flex; gap: 8px; background: rgba(0,0,0,0.2); padding: 8px; border-radius: 8px; margin-bottom: 12px;">
           <input type="text" id="referralLink" value="https://antarmarg.com?ref=USER_ID" readonly

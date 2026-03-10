@@ -243,8 +243,6 @@ const translations = {
     'feat.storiesDesc': 'Animated stories from Puranas, epics & traditions — for children and adults alike.',
     'feat.aiGuru': 'AI Guru',
     'feat.aiGuruDesc': 'Ask any spiritual question and receive wisdom rooted in authentic scriptures.',
-    'feat.audio': 'Audio Library',
-    'feat.audioDesc': 'Mantras, bhajans, meditation music, and guided sessions for every mood and occasion.',
     'feat.journeys': 'Spiritual Journeys',
     'feat.journeysDesc': 'Structured multi-day programs like Garbh Sanskar, Gita Challenge & Hanuman Sadhana.',
     'feat.ashram': 'Virtual Ashram',
@@ -262,10 +260,6 @@ const translations = {
     'aiguru.title': 'Your Personal <span class="gradient-text">Spiritual Guide</span>',
     'aiguru.subtitle': 'Ask any question about dharma, scriptures, or life — receive authentic, scripture-backed wisdom instantly.',
 
-    // Audio
-    'audio.label': 'Sacred Sounds',
-    'audio.title': 'Immersive <span class="gradient-text">Audio Library</span>',
-    'audio.subtitle': 'From morning mantras to bedtime stories — curated audio for every moment of your spiritual day.',
 
     // Pricing
     'pricing.label': 'Choose Your Path',
@@ -370,8 +364,6 @@ const translations = {
     'feat.storiesDesc': 'पुराण, महाकाव्य और परंपराओं से एनिमेटेड कथाएँ — बच्चों और बड़ों दोनों के लिए।',
     'feat.aiGuru': 'AI गुरु',
     'feat.aiGuruDesc': 'कोई भी आध्यात्मिक प्रश्न पूछें और प्रामाणिक शास्त्रों पर आधारित ज्ञान प्राप्त करें।',
-    'feat.audio': 'ऑडियो लाइब्रेरी',
-    'feat.audioDesc': 'मंत्र, भजन, ध्यान संगीत और हर अवसर के लिए निर्देशित सत्र।',
     'feat.journeys': 'आध्यात्मिक यात्राएँ',
     'feat.journeysDesc': 'गर्भ संस्कार, गीता चैलेंज और हनुमान साधना जैसे संरचित बहु-दिवसीय कार्यक्रम।',
     'feat.ashram': 'वर्चुअल आश्रम',
@@ -389,10 +381,6 @@ const translations = {
     'aiguru.title': 'आपका व्यक्तिगत <span class="gradient-text">आध्यात्मिक मार्गदर्शक</span>',
     'aiguru.subtitle': 'धर्म, शास्त्र या जीवन के बारे में कोई भी प्रश्न पूछें — तुरंत प्रामाणिक, शास्त्र-आधारित ज्ञान प्राप्त करें।',
 
-    // Audio
-    'audio.label': 'पवित्र ध्वनियाँ',
-    'audio.title': 'इमर्सिव <span class="gradient-text">ऑडियो लाइब्रेरी</span>',
-    'audio.subtitle': 'सुबह के मंत्रों से लेकर सोने की कथाओं तक — आपके आध्यात्मिक दिन के हर पल के लिए क्यूरेटेड ऑडियो।',
 
     // Pricing
     'pricing.label': 'अपना मार्ग चुनें',
@@ -768,62 +756,6 @@ function getCheckedValues(name) {
 /* ============================================
    AMBIENT BACKGROUND MUSIC
    ============================================ */
-(function initAmbientMusic() {
-  const bgMusic = document.getElementById('bgMusic');
-  const musicToggle = document.getElementById('musicToggle');
-  const musicIcon = document.getElementById('musicIcon');
-  let hasInteracted = false;
-  let isPlaying = false;
-
-  if (!bgMusic || !musicToggle) return;
-
-  // Try to play on first user interaction anywhere on the page
-  const startMusicOnInteract = () => {
-    if (hasInteracted) return;
-    hasInteracted = true;
-    toggleSound(true);
-    // Remove listeners once interacting
-    document.removeEventListener('click', startMusicOnInteract);
-    document.removeEventListener('touchstart', startMusicOnInteract);
-    document.removeEventListener('scroll', startMusicOnInteract);
-  };
-
-  // Attempt to play immediately on load (may be blocked by browser)
-  window.addEventListener('load', () => {
-    toggleSound(true);
-  });
-
-  document.addEventListener('click', startMusicOnInteract, { once: true });
-  document.addEventListener('touchstart', startMusicOnInteract, { once: true });
-  document.addEventListener('scroll', startMusicOnInteract, { once: true });
-
-  // Manual toggle
-  musicToggle.addEventListener('click', (e) => {
-    e.stopPropagation(); // don't trigger global click if not played yet
-    hasInteracted = true;
-    toggleSound(!isPlaying);
-  });
-
-  function toggleSound(play) {
-    if (play) {
-      bgMusic.volume = 0.3; // Gentle volume
-      bgMusic.play().then(() => {
-        isPlaying = true;
-        musicIcon.textContent = '🔊';
-        musicToggle.classList.add('playing');
-        musicToggle.setAttribute('aria-label', 'Pause Background Music');
-      }).catch(err => {
-        console.warn('Autoplay prevented by browser:', err);
-      });
-    } else {
-      bgMusic.pause();
-      isPlaying = false;
-      musicIcon.textContent = '🔇';
-      musicToggle.classList.remove('playing');
-      musicToggle.setAttribute('aria-label', 'Play Background Music');
-    }
-  }
-})();
 
 // --- Social Proof Counter ---
 (function initSocialProof() {
